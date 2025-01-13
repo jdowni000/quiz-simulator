@@ -10,7 +10,7 @@ import (
 // openCsv opens the contents of a csvfile and returns its contents
 func openCsv() [][]string {
 	// Open file
-	filename := flag.String("csv", "problems.csv", "csv file")
+	filename := flag.String("csv", "../problems.csv", "csv file")
 	flag.Parse()
 
 	file, err := os.Open(*filename)
