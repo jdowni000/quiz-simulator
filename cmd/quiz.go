@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math/rand/v2"
 	"os"
 	"os/signal"
 	"strings"
@@ -9,7 +10,13 @@ import (
 )
 
 // quiz allows 30 seconds to answer all questions provided
-func quiz(problemInfo [][]string) (int, bool) {
+func quiz(problemInfo [][]string, shuffle bool) (int, bool) {
+	if shuffle {
+		// Shuffle the slice
+		rand.Shuffle(len(problemInfo), func(i, j int) {
+			problemInfo[i], problemInfo[j] = problemInfo[j], problemInfo[i]
+		})
+	}
 	score := 0
 	for _, problem := range problemInfo {
 		// Create a channel to receive OS signals (e.g., Ctrl+C)
